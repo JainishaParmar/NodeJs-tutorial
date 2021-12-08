@@ -75,7 +75,7 @@
             "tags": ["Users"],
             "responses": {
               "200": {
-                "description": "User is deleted",
+                "description": "User is deleted!!",
                 "schema": {
                   "$ref": "#/definitions/User"
                 }
