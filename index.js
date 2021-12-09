@@ -11,7 +11,7 @@ app.use(morgan("dev"));
 app.use("/",postRoutes);
 app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDocument));
 app.get('/', (req,res) => {
-    res.send("hey")
+    res.send("hey!")
 });
 
 app.listen(8000);
