@@ -54,7 +54,7 @@ paths:
           description: tutorial is deleted
           schema:
             "$ref": "#/definitions/tutorial"
-    put:
+    patch:
       summary: Update tutorial with give ID
       tags:
       - Tutorial

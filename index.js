@@ -3,7 +3,7 @@ const app=express();
 const morgan=require("morgan");
 const postRoutes=require("./routes/post");
 const date = require('date-and-time')
-const swaggerUI=require('swagger-ui-express'),
+const swaggerUI=require('swagger-ui-express');
     
 
 const swaggerYaml = require('yamljs');
