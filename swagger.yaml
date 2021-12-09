@@ -65,7 +65,7 @@ paths:
           "$ref": "#/definitions/Tutorial"
       responses:
         '200':
-          description: tutorial is updated
+          description: tutorial is updated!!
           schema:
             "$ref": "#/definitions/Tutorial"
 definitions:
