@@ -2,15 +2,13 @@
     "swagger": "2.0",
     "info": {
       "version": "1.0.0", 
-      "title": "My tutorial project!!!",
-      "description": "tutorial"
-      
+      "title": "My Tutorial project!!!"
+       
     },
     "host": "localhost:8000",
     
     "tags": [
       {
-        "name": "Tutorial",
         "description": "API for design tutorial"
       }
     ],
@@ -20,46 +18,7 @@
   
   
     "paths": {
-      "/tutorial": {
-        "get": {
-          "tags": ["tutorial"],
-          "summary": "Get all tutorial in system",
-          "responses": {
-            "200": {
-              "description":"Tutorial data",
-              "schema": {
-                "$ref": "#/definitions/tutorial"
-              }
-            }
-            
-          }
-        }
-      },
-      "/addtutorial": {
-        "post": {
-          "tags": ["tutorial"],
-          "description": "Create new tutorial in system",
-          "parameters": [
-            {
-              "name": "tutorial",
-              "in": "body",
-              
-              "schema": {
-                "$ref": "#/definitions/tutorial"
-              }
-            }
-          ],
-          "produces": ["application/json"],
-          "responses": {
-            "200": {
-              "description": "New tutorial is created",
-              "schema": {
-                "$ref": "#/definitions/tutorial"
-              }
-            }
-          }
-        }
-    },
+        
     "/Tutorial": {
         "parameters": [
           {
@@ -70,28 +29,65 @@
             "type": "integer"
           }
         ],
-        "delete": {
-            "summary": "Delete tutorial with given ID",
-            "tags": ["tutorial"],
-            "responses": {
-              "200": {
-                "description": "tutorial is deleted!!",
-                "schema": {
-                  "$ref": "#/definitions/tutorial"
-                }
+        "get": {
+          "tags": ["Tutorial"],
+          "summary": "Get all tutorial in system",
+          "responses": {
+            "200": {
+              "description":"Tutorial data",
+              "schema": {
+                "$ref": "#/definitions/Tutorial"
               }
             }
-          },
-        "put": {
-          "summary": "Update tutorial with give ID",
-          "tags": ["tutorial"],
+            
+          }
+        },
+        "post": {
+          "summary": " create tutorial in system",
+          "tags": ["Tutorial"],
+          "description": "Add new tutorial in system",
           "parameters": [
             {
               "name": "tutorial",
               "in": "body",
               
               "schema": {
-                "$ref": "#/definitions/tutorial"
+                "$ref": "#/definitions/Tutorial"
+              }
+            }
+          ],
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "New tutorial is created",
+              "schema": {
+                "$ref": "#/definitions/Tutorial"
+              }
+            }
+          }
+        },
+        "delete": {
+            "summary": "Delete tutorial with given ID",
+            "tags": ["Tutorial"],
+            "responses": {
+              "200": {
+                "description": "tutorial is deleted!!",
+                "schema": {
+                  "$ref": "#/definitions/Tutorial"
+                }
+              }
+            }
+          },
+        "put": {
+          "summary": "Update tutorial with give ID",
+          "tags": ["Tutorial"],
+          "parameters": [
+            {
+              "name": "tutorial",
+              "in": "body",
+              
+              "schema": {
+                "$ref": "#/definitions/Tutorial"
               }
             }
           ],
@@ -99,19 +95,19 @@
             "200": {
               "description": "tutorial is updated",
               "schema": {
-                "$ref": "#/definitions/tutorial"
+                "$ref": "#/definitions/Tutorial"
               }
             }
           }
         }
       } 
-    },
+     },
     
 
    
 
     "definitions": {
-      "tutorial": {
+      "Tutorial": {
         "required": ["name", "_id", "createDate","updateDate"],
         "properties": {
           "_id": {
