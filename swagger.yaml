@@ -51,7 +51,7 @@ paths:
       - Tutorial
       responses:
         '200':
-          description: tutorial is deleted!
+          description: tutorial is deleted
           schema:
             "$ref": "#/definitions/Tutorial"
     put:
