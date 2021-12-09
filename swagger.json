@@ -1,0 +1,140 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0", 
+      "title": "My tutorial project!!!",
+      "description": "tutorial"
+      
+    },
+    "host": "localhost:8000",
+    
+    "tags": [
+      {
+        "description": "API for design tutorial"
+      }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+  
+  
+    "paths": {
+        
+    "/Tutorial": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of tutorial that we want to find",
+            "type": "integer"
+          }
+        ],
+        "get": {
+          "tags": ["Tutorial"],
+          "summary": "Get all tutorial in system",
+          "responses": {
+            "200": {
+              "description":"Tutorial data",
+              "schema": {
+                "$ref": "#/definitions/Tutorial"
+              }
+            }
+            
+          }
+        },
+        "post": {
+          "summary": " create tutorial in system",
+          "tags": ["Tutorial"],
+          "description": "Create new tutorial in system",
+          "parameters": [
+            {
+              "name": "tutorial",
+              "in": "body",
+              
+              "schema": {
+                "$ref": "#/definitions/Tutorial"
+              }
+            }
+          ],
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "New tutorial is created",
+              "schema": {
+                "$ref": "#/definitions/Tutorial"
+              }
+            }
+          }
+        },
+        "delete": {
+            "summary": "Delete tutorial with given ID",
+            "tags": ["Tutorial"],
+            "responses": {
+              "200": {
+                "description": "tutorial is deleted!!",
+                "schema": {
+                  "$ref": "#/definitions/Tutorial"
+                }
+              }
+            }
+          },
+        "put": {
+          "summary": "Update tutorial with give ID",
+          "tags": ["Tutorial"],
+          "parameters": [
+            {
+              "name": "tutorial",
+              "in": "body",
+              
+              "schema": {
+                "$ref": "#/definitions/Tutorial"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "tutorial is updated",
+              "schema": {
+                "$ref": "#/definitions/Tutorial"
+              }
+            }
+          }
+        }
+      } 
+     },
+    
+
+   
+
+    "definitions": {
+      "Tutorial": {
+        "required": ["name", "_id", "createDate","updateDate"],
+        "properties": {
+          "_id": {
+            "type": "integer",
+            "uniqueItems": true
+          },
+          "isPublic": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+            
+        },
+        
+          "updateDate": {
+            "type": "string",
+            "format": "date-time"
+            
+          }
+        }
+      } 
+    }
+  }
+  
