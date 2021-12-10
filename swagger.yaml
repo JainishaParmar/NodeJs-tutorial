@@ -1,0 +1,89 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: My Tutorial project!!!
+host: localhost:8080
+tags:
+- description: API for design Tutorial!!
+schemes:
+- http
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  tutorials:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: ID of tutorial that we want to find
+      type: string
+      format: uuid
+    get:
+      tags:
+      - Tutorials
+      summary: Get all tutorial in system
+      responses:
+        '200':
+          description: Tutorial data
+          schema:
+            $ref: '#/definitions/Tutorial'
+    post:
+      summary: create tutorial in system
+      tags:
+      - Tutorials
+      description: Add new tutorial in system
+      parameters:
+      - name: Tutorials
+        in: body
+        schema:
+          $ref: '#/definitions/Tutorial'
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: New tutorial is created
+          schema:
+            $ref: '#/definitions/Tutorial'
+    delete:
+      summary: Delete tutorial with given ID
+      tags:
+      - Tutorials
+      responses:
+        '200':
+          description: tutorial is deleted
+           
+    patch:
+      summary: Update tutorial with give ID
+      tags:
+      - Tutorials
+      parameters:
+      - name: Tutorials
+        in: body
+        schema:
+          $ref: '#/definitions/Tutorial'
+      responses:
+        '200':
+          description: Tutorial is updated!!
+          
+definitions:
+  Tutorial:
+    required:
+    - _id
+    - createdAt
+    - updatedAt
+    - published
+    properties:
+      -id:
+        type: string
+        format : uuid
+        uniqueItems: true
+      published:
+        type: boolean
+      createdAt:
+        type: string
+        format: date-time
+      updatedAt:
+        type: string
+        format: date-time
