@@ -44,13 +44,16 @@ paths:
       responses:
         '200':
           description: New tutorial is created
+          schema:
+            $ref: '#/definitions/Tutorials'
     delete:
       summary: Delete tutorial with given ID
       tags:
       - Tutorials
       responses:
         '200':
-          description: tutorial is deleted    
+          description: tutorial is deleted
+           
     patch:
       summary: Update tutorial with give ID
       tags:
@@ -63,8 +66,7 @@ paths:
       responses:
         '200':
           description: Tutorial is updated!!
-          schema:
-            $ref: '#/definitions/Tutorials'
+          
 definitions:
   Tutorials:
     required:
