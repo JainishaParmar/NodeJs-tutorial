@@ -2,17 +2,17 @@ swagger: '2.0'
 info:
   version: 1.0.0
   title: My Tutorial project!!!
-host: localhost:8000
+host: localhost:8080
 tags:
 - description: API for design tutorial
 schemes:
 - http
 consumes:
-- application/json
+- application/yaml
 produces:
-- application/json
+- application/yaml
 paths:
-  /tutorial:
+  tutorial:
     parameters:
     - name: id
       in: path
@@ -24,10 +24,10 @@ paths:
       - Tutorial
       summary: Get all tutorial in system
       responses:
-        200:
+        '200':
           description: Tutorial data
           schema:
-            $ref: #/definitions/tutorial
+            $ref: '#/definitions/tutorial'
     post:
       summary: create tutorial in system
       tags:
@@ -37,23 +37,23 @@ paths:
       - name: tutorial
         in: body
         schema:
-          $ref: #/definitions/tutorial
+          $ref: '#/definitions/tutorial'
       produces:
-      - application/json
+      - application/yaml
       responses:
-        200:
+        '200':
           description: New tutorial is created
           schema:
-            $ref: #/definitions/tutorial
+            $ref: '#/definitions/tutorial'
     delete:
       summary: Delete tutorial with given ID
       tags:
       - Tutorial
       responses:
-        200:
+        '200':
           description: tutorial is deleted
           schema:
-            $ref: #/definitions/tutorial
+            $ref: '#/definitions/tutorial'
     patch:
       summary: Update tutorial with give ID
       tags:
@@ -62,16 +62,15 @@ paths:
       - name: tutorial
         in: body
         schema:
-          $ref: #/definitions/tutorial
+          $ref: '#/definitions/tutorial'
       responses:
-        200:
+        '200':
           description: tutorial is updated!!
           schema:
-            $ref: #/definitions/tutorial
+            $ref: '#/definitions/tutorial'
 definitions:
   tutorial:
     required:
-    - name
     - UUID
     - createDate
     - updateDate
@@ -81,8 +80,6 @@ definitions:
         uniqueItems: true
       isPublic:
         type: boolean
-      name:
-        type: string
       createDate:
         type: string
         format: date-time

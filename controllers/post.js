@@ -4,3 +4,4 @@ exports.getPosts=(req,res)=>{
     });
     
 }
+
