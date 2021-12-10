@@ -1,14 +1,11 @@
 const express=require('express')
-const app=express();
-const morgan=require("morgan");
-const postRoutes=require("./routes/post");
-const date = require('date-and-time')
-const swaggerUI=require('swagger-ui-express');
-    
-
+const morgan = require("morgan");
+const swaggerUI = require('swagger-ui-express');
 const swaggerYaml = require('yamljs');
-const swaggerDoc   = swaggerYaml.load('./swagger.yaml');
+const postRoutes = require("./routes/post");
 
+const app = express();
+const swaggerDoc  = swaggerYaml.load('./swagger.yaml');
 
 app.use(morgan("dev"));
 app.use("/",postRoutes);
@@ -18,6 +15,3 @@ app.get('/', (req,res) => {
 });
 
 app.listen(8080);
-
-
-
