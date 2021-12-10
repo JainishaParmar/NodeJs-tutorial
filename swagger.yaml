@@ -8,9 +8,9 @@ tags:
 schemes:
 - http
 consumes:
-- application/yaml
+- application/json
 produces:
-- application/yaml
+- application/json
 paths:
   tutorial:
     parameters:
@@ -18,7 +18,8 @@ paths:
       in: path
       required: true
       description: ID of tutorial that we want to find
-      type: integer
+      type: string
+      format: uuid
     get:
       tags:
       - Tutorial
@@ -39,7 +40,7 @@ paths:
         schema:
           $ref: '#/definitions/tutorial'
       produces:
-      - application/yaml
+      - application/json
       responses:
         '200':
           description: New tutorial is created
@@ -71,18 +72,19 @@ paths:
 definitions:
   tutorial:
     required:
-    - UUID
-    - createDate
-    - updateDate
+    - -id
+    - createdAt
+    - updatedAt
     properties:
-      UUID:
+      -id:
         type: string
+        format : uuid
         uniqueItems: true
-      isPublic:
+      published:
         type: boolean
-      createDate:
+      createdAt:
         type: string
         format: date-time
-      updateDate:
+      updatedAt:
         type: string
         format: date-time
