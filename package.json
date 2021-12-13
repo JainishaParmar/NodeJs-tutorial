@@ -12,7 +12,8 @@
     "**/*.js": [
       "eslint --fix",
       "git add"
-    ]
+    ],
+    "*.js": ["./node_modules/.bin/eslint — fix”, “git add"]
   },
   "scripts": {
     "test": "echo \"Error: notest specified\"",
