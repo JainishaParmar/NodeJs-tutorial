@@ -17,6 +17,7 @@
   "scripts": {
     "test": "echo \"Error: notest specified\"",
     "dev": "nodemon index.js",
+    "lint": "eslint .",
     "prepare": "husky install"
 
   },
