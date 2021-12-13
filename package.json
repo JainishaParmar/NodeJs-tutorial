@@ -19,7 +19,6 @@
     "dev": "nodemon index.js",
     "lint": "eslint .",
     "prepare": "husky install"
-
   },
   "author": "jainisha",
   "license": "ISC",
