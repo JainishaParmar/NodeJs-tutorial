@@ -15,7 +15,10 @@
     ]
   },
   "scripts": {
-    "dev": "nodemon index.js"
+    "test": "echo \"Error: notest specified\"",
+    "dev": "nodemon index.js",
+    "prepare": "husky install"
+
   },
   "author": "jainisha",
   "license": "ISC",

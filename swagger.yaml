@@ -1,9 +1,9 @@
 swagger: '2.0'
 info:
   version: '1.0'
-  title: THClasses
+  title: My tutorial project
   description: An app to manage Tutorials
-host: localhost:3000
+host: localhost:8080
 basePath: /
 tags:
   - name: Tutorials
@@ -15,7 +15,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /tutorials:
+  tutorials:
     parameters:
       - name: id
         in: path
@@ -33,9 +33,9 @@ paths:
           schema:
             $ref: '#/definitions/Tutorial'
     post:
+      summary: Create tutorials in system
       tags:
         - Tutorials
-      description: Create a new tutorial in system
       parameters:
         - name: Tutorials
           in: body
