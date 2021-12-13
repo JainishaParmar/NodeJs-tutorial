@@ -15,10 +15,12 @@
     ]
   },
   "scripts": {
-    "test": "echo \"Error: notest specified\"",
+    "test": "echo \"Error: notest specified\" && exit 1",
     "dev": "nodemon index.js",
     "lint": "eslint .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint-staged": "lint-staged",
+    "postinstall": "husky install"
   },
   "author": "jainisha",
   "license": "ISC",
