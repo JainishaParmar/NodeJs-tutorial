@@ -1,83 +1,85 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
-  version: 1.0
-  title: My Tutorial project!!!
+  version: "1.0"
+  title: My tutorial project
+  description: An app to manage Tutorials
 host: localhost:8080
+basePath: /
 tags:
-- description: API for design Tutorial!!
+  - name: Tutorials
+    description: API for user in the system
 schemes:
-- http
+  - http
 consumes:
-- application/json
+  - application/json
 produces:
-- application/json
+  - application/json
 paths:
   tutorials:
     parameters:
-    - name: id
-      in: path
-      required: true
-      description: ID of tutorial that we want to find
-      type: string
-      format: uuid
+      - name: id
+        in: path
+        required: true
+        description: ID of the tutorial that we want to find
+        type: string
+        format: uuid
     get:
       tags:
-      - Tutorials
-      summary: Get all tutorial in system
+        - Tutorials
+      summary: Get all tutorials in system
       responses:
-        '200':
-          description: Tutorial data
+        "200":
+          description: OK
           schema:
-            $ref: '#/definitions/Tutorial'
+            $ref: "#/definitions/Tutorial"
     post:
-      summary: create tutorial in system
+      summary: Create tutorials in system
       tags:
-      - Tutorials
-      description: Add new tutorial in system
+        - Tutorials
       parameters:
-      - name: Tutorials
-        in: body
-        schema:
-          $ref: '#/definitions/Tutorial'
-      produces:
-      - application/json
-      responses:
-        '200':
-          description: New tutorial is created
+        - name: Tutorials
+          in: body
+          description: User that we want to create
           schema:
-            $ref: '#/definitions/Tutorial'
-    delete:
-      summary: Delete tutorial with given ID
-      tags:
-      - Tutorials
+            $ref: "#/definitions/Tutorial"
+      produces:
+        - application/json
       responses:
-        '200':
-          description: tutorial is deleted
-           
+        "200":
+          description: New user is created
+          schema:
+            $ref: "#/definitions/Tutorial"
+    delete:
+      summary: Delete tutorials with given ID
+      tags:
+        - Tutorials
+      responses:
+        "200":
+          description: Tutorial is deleted
     patch:
       summary: Update tutorial with give ID
       tags:
-      - Tutorials
+        - Tutorials
       parameters:
-      - name: Tutorials
-        in: body
-        schema:
-          $ref: '#/definitions/Tutorial'
+        - name: Tutorial
+          in: body
+          description: Tutorial with new values of properties
+          schema:
+            $ref: "#/definitions/Tutorial"
       responses:
-        '200':
-          description: Tutorial is updated!!
-          
+        "200":
+          description: Tutorial is updated
 definitions:
   Tutorial:
     required:
-    - _id
-    - createdAt
-    - updatedAt
-    - published
+      - _id
+      - createdAt
+      - updatedAt
+      - published
     properties:
-      -id:
+      _id:
         type: string
-        format : uuid
+        format: uuid
         uniqueItems: true
       published:
         type: boolean
