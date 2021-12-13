@@ -22,13 +22,16 @@
   "dependencies": {
     "date-and-time": "^2.0.1",
     "eslint-config-airbnb": "^19.0.2",
+    "eslint-plugin-spellcheck": "^0.0.19",
     "express": "^4.17.1",
     "mongoose": "^6.0.14",
     "morgan": "^1.10.0",
     "swagger-ui-express": "^4.2.0",
+    "yaml-eslint-parser": "^0.5.0",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-formatter-table": "^7.32.1",
@@ -39,5 +42,4 @@
     "nodemon": "^2.0.15",
     "prettier": "2.5.1"
   }
- 
 }
