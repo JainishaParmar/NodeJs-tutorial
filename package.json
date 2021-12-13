@@ -5,16 +5,14 @@
   "main": "index.js",
   "husky": {
     "hooks": {
-      "pre-commit": "npm run pretest"
-
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "**/*.js": [
-      "eslint --fix",
+    "*.{js,json,css,md}": [
+      "prettier --single-quote --write",
       "git add"
-    ],
-    "*.js": ["./node_modules/.bin/eslint — fix”, “git add"]
+    ]
   },
   "scripts": {
     "test": "echo \"Error: notest specified\"",
