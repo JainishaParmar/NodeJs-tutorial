@@ -14,8 +14,10 @@
     "prettier/prettier": "error",
     "no-use-before-define": ["error", {"functions": false, "classes": false}],
     "no-shadow": "off",
+    "new-cap":"off",
     "no-restricted-globals":"off",
     "no-console":"off",
+    "no-unused-vars":"off",
     "spellcheck/spell-checker": [2,
       {
           "comments": true,
@@ -36,7 +38,11 @@
               "urlencoded",
               "addr",
               "syscall",
-              "__dirname"
+              "__dirname",
+              "mangoose",
+              "mongodb",
+              "localhost",
+              "successfull"
           ],
           "skipIfMatch": [
               "http://[^s]*",
