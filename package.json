@@ -2,8 +2,8 @@
   "name": "repo",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
   "main": "./bin/www.js",
+  "type": "module",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"

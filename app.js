@@ -17,7 +17,7 @@ mangoose
   .connect("mongodb://localhost:27017/tutorials", {
     useNewUrlParser: true,
   })
-  .then(() => console.log("Connection successfull!!"))
+  .then(() => console.log("Connection successfull!"))
   .catch((err) => console.log);
 
 // Schema
