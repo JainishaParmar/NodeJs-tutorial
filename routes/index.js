@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 
 const router = express.Router();
 
@@ -7,4 +7,8 @@ router.get('/', (_req, res) => {
   res.render('index', { title: 'Express' });
 });
 
-module.exports = router;
+const user = { name: 'Test' };
+const role = { type: 'admin' };
+
+export default router;
+export { user, role, router };

@@ -2,6 +2,8 @@
   "name": "repo",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
+  "main": "./bin/www.js",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -15,7 +17,7 @@
   },
   "scripts": {
     "test": "echo \"Error: notest specified\"",
-    "start": "node ./bin/www --exec babel-node --presets babel-preset-env",
+    "start": "nodemon --experimental-modules --es-module-specifier-resolution=node ./bin/www",
     "lint": "./node_modules/.bin/eslint --ignore-path .gitignore .",
     "pretest": "npm run lint",
     "prepare": "husky install"
@@ -30,12 +32,7 @@
     "swagger-ui-express": "^4.2.0",
     "yamljs": "^0.3.0"
   },
-  "main": "app.js",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.1.0",
-    "babel-preset-env": "^1.7.0",
     "eslint": "^8.4.1",
     "eslint-config-airbnb": "^19.0.2",
     "eslint-config-airbnb-base": "^15.0.0",

@@ -12,6 +12,10 @@
   "rules": {
     "quotes": "off",
     "prettier/prettier": "error",
+    "no-use-before-define": ["error", {"functions": false, "classes": false}],
+    "no-shadow": "off",
+    "no-restricted-globals":"off",
+    "no-console":"off",
     "spellcheck/spell-checker": [2,
       {
           "comments": true,
@@ -29,7 +33,10 @@
               "yamljs",
               "morgan",
               "req",
-              "urlencoded"
+              "urlencoded",
+              "addr",
+              "syscall",
+              "__dirname"
           ],
           "skipIfMatch": [
               "http://[^s]*",
