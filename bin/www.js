@@ -1,8 +1,6 @@
-import debug from "debug";
-import http from "http";
-import app from '../app';
-
-debug.debug('nodeJsDemo-tutorial:server');
+const http = require('http');
+const debug = require('debug')('nodeJsDemo:server');
+const app = require('../app');
 
 const server = http.createServer(app);
 
