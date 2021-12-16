@@ -11,7 +11,8 @@
   "plugins": ["prettier", "spellcheck"],
   "rules": {
     "quotes": "off",
-    "prettier/prettier": "error",
+    "new-cap":"off",
+    "no-unused-vars":"off",
     "spellcheck/spell-checker": [2,
       {
           "comments": true,
@@ -26,7 +27,17 @@
               "hunspell",
               "utils",
               "yaml",
-              "yamljs"
+              "yamljs",
+              "morgan",
+              "req",
+              "urlencoded",
+              "addr",
+              "syscall",
+              "__dirname",
+              "mangoose",
+              "mongodb",
+              "localhost",
+              "successfull"
           ],
           "skipIfMatch": [
               "http://[^s]*",
