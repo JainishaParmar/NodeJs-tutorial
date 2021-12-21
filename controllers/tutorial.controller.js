@@ -1,74 +1,73 @@
-/* eslint-disable no-console */
-const { response } = require('express');
-const { Tutorial } = require('../models/tutorial.schema');
-const mangoose = require('../init/db');
+const Tutorial = require("../models/tutorial.schema");
 
-// create Document or insert
-const createTutorial = async (req, res) => {
+// get All Tutorials
+const tutorialsAll = async (req, res) => {
   try {
-    const demoTutorial = new Tutorial({
-      id: "1",
-      published: true,
+    const tutorials = await Tutorial.find().sort({
+      createdAt: -1,
     });
-    const result = await demoTutorial.save();
-    // eslint-disable-next-line no-console
-    console.log(result);
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.log(err);
-  }
-};
-
-const getTutorialById = async (req, res) => {
-  const findId = req.params.id;
-  try {
-    const tutorials = await Tutorial.find({ id: findId });
     res.json(tutorials);
   } catch (error) {
     res.json({ message: error });
   }
 };
 
-const getTutorial = async (req, res) => {
+// Add new Tutorials
+const tutorialsCreate = async (req, res) => {
+  const tutorial = new Tutorial({
+    published: req.body.published,
+  });
   try {
-    const tutorials = await Tutorial.find();
+    const savedTutorial = await tutorial.save();
+    res.send(savedTutorial);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
+// Update a Tutorial by ID
+const updateTutorials = async (req, res) => {
+  try {
+    const { update } = req.body;
+    const { options } = { new: true };
+    const tutorialUpdate = await Tutorial.findByIdAndUpdate(
+      { _id: req.params.tutorialId },
+      { id: req.body.id },
+      update,
+      options,
+    );
+    res.json(tutorialUpdate);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
+// Delete a Tutorial by ID
+const deleteTutorials = async (req, res) => {
+  try {
+    const tutorialRemove = await Tutorial.findByIdAndDelete(
+      req.params.tutorialId,
+    );
+    res.json(tutorialRemove);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
+// Able to search by Id
+const tutorialSearchById = async (req, res) => {
+  try {
+    const tutorials = await Tutorial.findById(req.params.tutorialId);
     res.json(tutorials);
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log("error");
+    res.json({ message: error });
   }
-};
-
-const getUpdateTutorial = async (data) => {
-  try {
-    const updateData = await Tutorial.update({ id: data }, { $set: { id: "2" } }).exec();
-    console.log(updateData);
-  } catch (error) {
-    console.log("error", error);
-  }
-};
-
-const updateTutorial = async (req, res) => {
-  const data = req.params.id;
-  const tutorial = await getUpdateTutorial(data);
-  res.json(tutorial);
-};
-
-const deleteById = async (deleteId) => {
-  try {
-    const deleteData = await Tutorial.findAndDelete({ id: deleteId });
-    console.log(deleteData);
-  } catch (error) {
-    console.log("error", error);
-  }
-};
-
-const deleteTutorial = async (req, res) => {
-  const deleteId = req.params.id;
-  const tutorial = await deleteById(deleteId);
-  res.json(tutorial);
 };
 
 module.exports = {
-  createTutorial, getTutorial, updateTutorial, deleteTutorial, getTutorialById,
+  tutorialsAll,
+  tutorialsCreate,
+  updateTutorials,
+  deleteTutorials,
+  tutorialSearchById,
 };

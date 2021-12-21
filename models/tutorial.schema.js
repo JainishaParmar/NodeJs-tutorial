@@ -1,25 +1,15 @@
-const mangoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const tutorialSchema = new mangoose.Schema({
-  id: {
-    type: String,
-    required: true,
+// Schema
+const tutorialSchema = new mongoose.Schema(
+  {
+    published: {
+      type: Boolean,
+      required: true,
+    },
   },
-  published: {
-    type: Boolean,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-    required: true,
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
-    required: true,
-  },
-});
-const Tutorial = new mangoose.model("Tutorial", tutorialSchema);
+  // eslint-disable-next-line spellcheck/spell-checker
+  { timestamps: true },
+);
 
-module.exports = { Tutorial };
+module.exports = mongoose.model("Tutorial", tutorialSchema);
