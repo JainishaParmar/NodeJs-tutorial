@@ -10,14 +10,13 @@ const { promise } = require('./init/db');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const TutorialRouter = require('./routes/tutorial.routes');
-
 const dirname = path.resolve();
 
 const app = express();
 const swaggerDoc = swaggerYaml.load('./swagger.yaml');
 
 // eslint-disable-next-line no-console
-promise.then(() => console.log("Connection successfull!"));
+promise.then(() => console.log("Connection successful!"));
 
 // view engine setup
 app.set('views', path.join(dirname, 'views'));
