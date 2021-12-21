@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const { response } = require('express');
-const mangoose = require('../init/db');
 const { Tutorial } = require('../models/tutorial.schema');
+const mangoose = require('../init/db');
 
 // create Document or insert
 const createTutorial = async (req, res) => {
@@ -13,7 +13,6 @@ const createTutorial = async (req, res) => {
     const result = await demoTutorial.save();
     // eslint-disable-next-line no-console
     console.log(result);
-    res.send(200);
   } catch (err) {
     // eslint-disable-next-line no-console
     console.log(err);
