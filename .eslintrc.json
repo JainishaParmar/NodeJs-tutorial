@@ -32,7 +32,6 @@
               "urlencoded",
               "addr",
               "syscall",
-              "__dirname",
               "mangoose",
               "mongodb",
               "localhost",
