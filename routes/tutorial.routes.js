@@ -6,10 +6,10 @@ const {
   updateTutorial,
   deleteTutorial,
 } = require("../controllers/tutorial.controller");
-/* GET users listing. */
+
 router.get("/", getTutorials);
-router.get("/:Id", getTutorialById);
+router.get("/:id", getTutorialById);
 router.post("/", createTutorial);
-router.patch("/:Id", updateTutorial);
-router.delete("/:Id", deleteTutorial);
+router.patch("/:id", updateTutorial);
+router.delete("/:id", deleteTutorial);
 module.exports = router;

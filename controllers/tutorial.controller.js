@@ -6,10 +6,9 @@ const getTutorials = async (req, res) => {
     const tutorials = await Tutorial.find().sort({
       createdAt: -1,
     });
-    res.json(tutorials);
-    res.status(200).send();
+    res.status(200).send(tutorials);
   } catch (error) {
-    res.status(404).send();
+    res.status(404).send({ message: 'not found' });
   }
 };
 
@@ -22,9 +21,9 @@ const createTutorial = async (req, res) => {
   });
   try {
     const savedTutorial = await tutorial.save();
-    res.send(savedTutorial);
+    res.status(201).send();
   } catch (error) {
-    res.status(405).send(error);
+    res.status(500).send({ message: "Internal Server Error" });
   }
 };
 
@@ -37,32 +36,31 @@ const updateTutorial = async (req, res) => {
     if (typeof description !== "undefined") update.description = description;
     if (typeof published !== "undefined") update.published = published;
     const tutorialUpdate = await Tutorial.findByIdAndUpdate(
-      { _id: req.params.Id },
+      { _id: req.params.id },
       update,
       { new: true },
     );
-    res.json(tutorialUpdate);
+    res.status(201).send();
   } catch (error) {
-    res.status(500).send("Internal Server Error");
+    res.status(400).send({ message: 'Invalid Tutorial id' });
   }
 };
 
 // Delete a Tutorial by ID
 const deleteTutorial = async (req, res) => {
   try {
-    const tutorialRemove = await Tutorial.findByIdAndDelete(req.params.Id);
-    res.json(tutorialRemove);
-    res.status(204).send();
+    const tutorialRemove = await Tutorial.findByIdAndDelete(req.params.id);
+    res.status(200).send();
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).send({ message: 'Invalid Tutorial id' });
   }
 };
 
 // Able to search by Id
 const getTutorialById = async (req, res) => {
   try {
-    const tutorial = await Tutorial.findById(req.params.Id);
-    res.json(tutorial);
+    const tutorial = await Tutorial.findById(req.params.id);
+    res.status(200).send();
   } catch (error) {
     res.status(404).send({ message: "Tutorial not found" });
   }
