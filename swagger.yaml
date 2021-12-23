@@ -50,7 +50,7 @@ paths:
         '201':
           description: New tutorial is created
           schema:
-            $ref: '#/definitions/Tutorial'
+            $ref: '#/definitions/TutorialCreateBody'
         '500':
           description: 'Internal server error'
           schema:
@@ -61,7 +61,7 @@ paths:
       - name: id
         in: path
         required: true
-        description: ID of the tutorial that we want to find
+        description: ID of the tutorial
         type: string
         format: uuid
     delete:
@@ -85,7 +85,7 @@ paths:
       tags:
         - Tutorials
       responses:
-        '201':
+        '204':
           description: Tutorial is updated
         '400':
           description: 'Invalid tutorial Id'
@@ -98,7 +98,7 @@ paths:
     get:
       tags:
         - Tutorials
-      summary: Get tutorials By ID
+      summary: Get tutorial By ID
       responses:
         '200':
           description: OK
@@ -139,6 +139,16 @@ definitions:
       updatedAt:
         type: string
         format: date-time
+  
+  TutorialCreateBody:
+    required:
+      - title
+      - description
+    properties:
+      title:
+        type: string
+      description:
+        type: string
 
   500Response:
     type: object
