@@ -16,7 +16,6 @@ const tutorialSchema = new mongoose.Schema(
       required: true,
     },
   },
-  // eslint-disable-next-line spellcheck/spell-checker
   { timestamps: true },
 );
 

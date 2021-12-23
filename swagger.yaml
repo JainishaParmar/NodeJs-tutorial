@@ -139,7 +139,7 @@ definitions:
       updatedAt:
         type: string
         format: date-time
-  
+
   TutorialCreateBody:
     required:
       - title
