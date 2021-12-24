@@ -25,10 +25,6 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/Tutorial'
-        '404':
-          description: 'Not found'
-          schema:
-            $ref: '#/definitions/404Response'
         '500':
           description: 'Internal server error'
           schema:
@@ -43,14 +39,14 @@ paths:
           in: body
           description: Tutorial that we want to create
           schema:
-            $ref: '#/definitions/Tutorial'
+            $ref: '#/definitions/TutorialCreateBody'
       produces:
         - application/json
       responses:
         '201':
           description: New tutorial is created
           schema:
-            $ref: '#/definitions/TutorialCreateBody'
+            $ref: '#/definitions/Tutorial'
         '500':
           description: 'Internal server error'
           schema:
@@ -63,7 +59,6 @@ paths:
         required: true
         description: ID of the tutorial
         type: string
-        format: uuid
     delete:
       summary: Delete tutorial with given ID
       tags:
@@ -71,10 +66,10 @@ paths:
       responses:
         '200':
           description: Tutorial is deleted
-        '400':
+        '404':
           description: 'Invalid tutorial Id'
           schema:
-            $ref: '#/definitions/400Response'
+            $ref: '#/definitions/404Response'
         '500':
           description: 'Internal server error'
           schema:
@@ -84,6 +79,12 @@ paths:
       summary: Update tutorial with give ID
       tags:
         - Tutorials
+      parameters:
+        - name: Tutorials
+          in: body
+          description: Tutorial that we want to update
+          schema:
+            $ref: '#/definitions/TutorialCreateBody'
       responses:
         '204':
           description: Tutorial is updated
@@ -104,10 +105,10 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/Tutorial'
-        '400':
+        '404':
           description: 'Invalid ID tutorial'
           schema:
-            $ref: '#/definitions/400Response'
+            $ref: '#/definitions/404Response'
         '500':
           description: 'Internal Server Error'
           schema:
@@ -144,11 +145,14 @@ definitions:
     required:
       - title
       - description
+      - published
     properties:
       title:
         type: string
       description:
         type: string
+      published:
+        type: boolean
 
   500Response:
     type: object
