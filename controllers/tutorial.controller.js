@@ -1,5 +1,7 @@
 const { CastError } = require("mongoose");
 const Tutorial = require("../models/tutorial.schema");
+const { schema } = require("../validation/tutorial.validation");
+
 // get All Tutorials
 const getTutorials = async (req, res) => {
   try {
@@ -8,7 +10,7 @@ const getTutorials = async (req, res) => {
     });
     res.status(200).send(tutorials);
   } catch (error) {
-    res.status(500).send({ message: "Internal Server Error" });
+    res.status(500).send({ message: "Tutorial not found" });
   }
 };
 
@@ -20,6 +22,8 @@ const createTutorial = async (req, res) => {
     published: req.body.published,
   });
   try {
+    await schema.validateAsync(req.body);
+
     await tutorial.save();
     res.status(201).send();
   } catch (error) {
@@ -38,10 +42,14 @@ const updateTutorial = async (req, res) => {
     const tutorial = await Tutorial.findByIdAndUpdate(
       { _id: req.params.id },
       update,
-      { new: true },
+      {
+        new: true,
+      },
     );
+    await schema.validateAsync(req.body);
+
     if (tutorial === null) {
-      res.status(400).send({ message: 'Invalid Tutorial id' });
+      res.status(400).send({ message: "Invalid Tutorial Id" });
     } else {
       res.status(204).send();
     }
@@ -58,14 +66,15 @@ const updateTutorial = async (req, res) => {
 const deleteTutorial = async (req, res) => {
   try {
     const tutorial = await Tutorial.findByIdAndDelete(req.params.id);
+
     if (tutorial === null) {
-      res.status(400).send({ message: 'Invalid Tutorial id' });
+      res.status(404).send({ message: "Not Found Tutorial" });
     } else {
       res.status(200).send();
     }
   } catch (error) {
     if (error instanceof CastError) {
-      res.status(400).send({ message: "Invalid Tutorial Id" });
+      res.status(404).send({ message: "Invalid Tutorial Id" });
     } else {
       res.status(500).send({ message: "Internal Server Error" });
     }
@@ -77,13 +86,13 @@ const getTutorialById = async (req, res) => {
   try {
     const tutorial = await Tutorial.findById(req.params.id);
     if (tutorial === null) {
-      res.status(404).send({ message: 'Tutorial not found' });
+      res.status(404).send({ message: "Not Found Tutorial" });
     } else {
       res.status(200).send();
     }
   } catch (error) {
     if (error instanceof CastError) {
-      res.status(404).send({ message: "Tutorial not found" });
+      res.status(404).send({ message: "Invalid Tutorial Id" });
     } else {
       res.status(500).send({ message: "Internal Server Error" });
     }
@@ -92,8 +101,8 @@ const getTutorialById = async (req, res) => {
 
 module.exports = {
   getTutorials,
-  getTutorialById,
   createTutorial,
   updateTutorial,
   deleteTutorial,
+  getTutorialById,
 };
