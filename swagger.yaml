@@ -15,14 +15,7 @@ consumes:
 produces:
   - application/json
 paths:
-  tutorials:
-    parameters:
-      - name: id
-        in: path
-        required: true
-        description: ID of the tutorial that we want to find
-        type: string
-        format: uuid
+  /tutorials:
     get:
       tags:
         - Tutorials
@@ -32,6 +25,11 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/Tutorial'
+        '500':
+          description: 'Internal server error'
+          schema:
+            $ref: '#/definitions/500Response'
+
     post:
       summary: Create tutorials in system
       tags:
@@ -39,40 +37,89 @@ paths:
       parameters:
         - name: Tutorials
           in: body
-          description: User that we want to create
+          description: Tutorial that we want to create
           schema:
-            $ref: '#/definitions/Tutorial'
+            $ref: '#/definitions/TutorialCreateBody'
       produces:
         - application/json
       responses:
-        '200':
-          description: New user is created
+        '201':
+          description: New tutorial is created
           schema:
             $ref: '#/definitions/Tutorial'
+        '500':
+          description: 'Internal server error'
+          schema:
+            $ref: '#/definitions/500Response'
+
+  /tutorials/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: ID of the tutorial
+        type: string
     delete:
-      summary: Delete tutorials with given ID
+      summary: Delete tutorial with given ID
       tags:
         - Tutorials
       responses:
         '200':
           description: Tutorial is deleted
+        '404':
+          description: 'Invalid tutorial Id'
+          schema:
+            $ref: '#/definitions/404Response'
+        '500':
+          description: 'Internal server error'
+          schema:
+            $ref: '#/definitions/500Response'
+
     patch:
       summary: Update tutorial with give ID
       tags:
         - Tutorials
       parameters:
-        - name: Tutorial
+        - name: Tutorials
           in: body
-          description: Tutorial with new values of properties
+          description: Tutorial that we want to update
           schema:
-            $ref: '#/definitions/Tutorial'
+            $ref: '#/definitions/TutorialCreateBody'
+      responses:
+        '204':
+          description: Tutorial is updated
+        '400':
+          description: 'Invalid tutorial Id'
+          schema:
+            $ref: '#/definitions/400Response'
+        '500':
+          description: 'Internal Server Error'
+          schema:
+            $ref: '#/definitions/500Response'
+    get:
+      tags:
+        - Tutorials
+      summary: Get tutorial By ID
       responses:
         '200':
-          description: Tutorial is updated
+          description: OK
+          schema:
+            $ref: '#/definitions/Tutorial'
+        '404':
+          description: 'Invalid ID tutorial'
+          schema:
+            $ref: '#/definitions/404Response'
+        '500':
+          description: 'Internal Server Error'
+          schema:
+            $ref: '#/definitions/500Response'
+
 definitions:
   Tutorial:
     required:
       - _id
+      - title
+      - description
       - createdAt
       - updatedAt
       - published
@@ -81,6 +128,10 @@ definitions:
         type: string
         format: uuid
         uniqueItems: true
+      title:
+        type: string
+      description:
+        type: string
       published:
         type: boolean
       createdAt:
@@ -89,3 +140,40 @@ definitions:
       updatedAt:
         type: string
         format: date-time
+
+  TutorialCreateBody:
+    required:
+      - title
+      - description
+      - published
+    properties:
+      title:
+        type: string
+      description:
+        type: string
+      published:
+        type: boolean
+
+  500Response:
+    type: object
+    required:
+      - message
+    properties:
+      message:
+        type: string
+
+  404Response:
+    type: object
+    required:
+      - message
+    properties:
+      message:
+        type: string
+
+  400Response:
+    type: object
+    required:
+      - message
+    properties:
+      message:
+        type: string

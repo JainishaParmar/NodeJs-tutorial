@@ -17,7 +17,7 @@ const app = express();
 const swaggerDoc = swaggerYaml.load('./swagger.yaml');
 
 // eslint-disable-next-line no-console
-promise.then(() => console.log("Connection successfull!"));
+promise.then(() => console.log("Connection successful!"));
 
 // view engine setup
 app.set('views', path.join(dirname, 'views'));
