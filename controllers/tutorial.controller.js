@@ -39,6 +39,7 @@ const updateTutorial = async (req, res) => {
     if (typeof title !== "undefined") update.title = title;
     if (typeof description !== "undefined") update.description = description;
     if (typeof published !== "undefined") update.published = published;
+    await schema.validateAsync(req.body);
     const tutorial = await Tutorial.findByIdAndUpdate(
       { _id: req.params.id },
       update,
@@ -46,7 +47,6 @@ const updateTutorial = async (req, res) => {
         new: true,
       },
     );
-    await schema.validateAsync(req.body);
 
     if (tutorial === null) {
       res.status(400).send({ message: "Invalid Tutorial Id" });
