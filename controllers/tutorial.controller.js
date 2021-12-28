@@ -23,7 +23,6 @@ const createTutorial = async (req, res) => {
   });
   try {
     await schema.validateAsync(req.body);
-
     await tutorial.save();
     res.status(201).send();
   } catch (error) {
@@ -66,6 +65,7 @@ const updateTutorial = async (req, res) => {
 const deleteTutorial = async (req, res) => {
   try {
     const tutorial = await Tutorial.findByIdAndDelete(req.params.id);
+
     if (tutorial === null) {
       res.status(404).send({ message: "Not Found Tutorial" });
     } else {
