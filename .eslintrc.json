@@ -35,7 +35,8 @@
               "mangoose",
               "mongodb",
               "localhost",
-              "timestamps"
+              "timestamps",
+              "joi"
           ],
           "skipIfMatch": [
               "http://[^s]*",

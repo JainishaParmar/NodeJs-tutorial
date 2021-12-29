@@ -7,7 +7,7 @@ host: localhost:3000
 basePath: /
 tags:
   - name: Tutorials
-    description: API for user in the system
+    description: API for tutorial
 schemes:
   - http
 consumes:
@@ -47,6 +47,10 @@ paths:
           description: New tutorial is created
           schema:
             $ref: '#/definitions/Tutorial'
+        '400':
+          description: 'Invalid tutorial Id'
+          schema:
+            $ref: '#/definitions/400Response'
         '500':
           description: 'Internal server error'
           schema:
@@ -67,7 +71,7 @@ paths:
         '200':
           description: Tutorial is deleted
         '404':
-          description: 'Invalid tutorial Id'
+          description: 'Tutorial not found'
           schema:
             $ref: '#/definitions/404Response'
         '500':
@@ -88,6 +92,10 @@ paths:
       responses:
         '204':
           description: Tutorial is updated
+        '404':
+          description: 'Tutorial not found'
+          schema:
+            $ref: '#/definitions/404Response'
         '400':
           description: 'Invalid tutorial Id'
           schema:
@@ -106,7 +114,7 @@ paths:
           schema:
             $ref: '#/definitions/Tutorial'
         '404':
-          description: 'Invalid ID tutorial'
+          description: 'Tutorial not found'
           schema:
             $ref: '#/definitions/404Response'
         '500':

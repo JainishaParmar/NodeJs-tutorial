@@ -7,8 +7,6 @@ const swaggerYaml = require('yamljs');
 const logger = require('morgan');
 const { promise } = require('./init/db');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const TutorialRouter = require('./routes/tutorial.routes');
 
 const dirname = path.resolve();
@@ -30,8 +28,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(dirname, 'public')));
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/tutorials', TutorialRouter);
 
 // catch 404 and forward to error handler
