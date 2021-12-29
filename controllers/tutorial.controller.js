@@ -30,7 +30,7 @@ const createTutorial = async (req, res) => {
       res.status(201).send();
     }
   } catch (error) {
-    if (error) {
+    if (error instanceof CastError) {
       res.status(400).send({ message: "Invalid Tutorial details" });
     } else {
       res.status(500).send({ message: "Internal Server Error" });
