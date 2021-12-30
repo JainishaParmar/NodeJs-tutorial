@@ -10,7 +10,6 @@ const getTutorials = async (req, res) => {
       createdAt: -1,
     });
     res.status(200).send(tutorials);
-    logger.info('Get all tutorials');
   } catch (error) {
     res.status(500).send({ message: "Internal server error" });
     logger.error('Internal server error');
@@ -27,7 +26,6 @@ const createTutorial = async (req, res) => {
     const tutorial = new Tutorial(value);
     await tutorial.save();
     res.status(201).send();
-    logger.info('New tutorial created');
   } catch (error) {
     if (error instanceof CastError) {
       res.status(400).send({ message: "Invalid Tutorial details" });
@@ -54,7 +52,6 @@ const updateTutorial = async (req, res) => {
       res.status(404).send({ message: "Tutorial not found" });
     } else {
       res.status(204).send();
-      logger.info('Tutorial updated');
     }
   } catch (error) {
     if (error instanceof CastError) {
@@ -76,7 +73,6 @@ const deleteTutorial = async (req, res) => {
       res.status(404).send({ message: "Tutorial not found" });
     } else {
       res.status(200).send();
-      logger.info('Tutorial deleted');
     }
   } catch (error) {
     if (error instanceof CastError) {
@@ -96,7 +92,6 @@ const getTutorialById = async (req, res) => {
       res.status(404).send({ message: "Tutorial not found" });
     } else {
       res.status(200).send();
-      logger.info('Tutorial get by id');
     }
   } catch (error) {
     if (error instanceof CastError) {
