@@ -36,7 +36,9 @@
               "mongodb",
               "localhost",
               "timestamps",
-              "joi"
+              "joi",
+              "winston",
+              "maxsize"
           ],
           "skipIfMatch": [
               "http://[^s]*",

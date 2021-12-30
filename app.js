@@ -13,9 +13,13 @@ const dirname = path.resolve();
 
 const app = express();
 const swaggerDoc = swaggerYaml.load('./swagger.yaml');
+const tutorialWinston = require("./config/tutorial.winston");
 
-// eslint-disable-next-line no-console
-promise.then(() => console.log("Connection successful!"));
+if (promise) {
+  tutorialWinston.tutorialLogger.log('info', 'connection successful');
+} else {
+  tutorialWinston.tutorialLogger.error('info', 'connection successful');
+}
 
 // view engine setup
 app.set('views', path.join(dirname, 'views'));
