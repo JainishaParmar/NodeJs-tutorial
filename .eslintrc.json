@@ -38,7 +38,8 @@
               "timestamps",
               "joi",
               "winston",
-              "maxsize"
+              "maxsize",
+              "logform"
           ],
           "skipIfMatch": [
               "http://[^s]*",
