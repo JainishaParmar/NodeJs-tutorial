@@ -4,7 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const swaggerUI = require('swagger-ui-express');
 const swaggerYaml = require('yamljs');
-const logger = require('morgan');
+const morgan = require('morgan');
 const { promise } = require('./init/db');
 
 const TutorialRouter = require('./routes/tutorial.routes');
@@ -13,15 +13,18 @@ const dirname = path.resolve();
 
 const app = express();
 const swaggerDoc = swaggerYaml.load('./swagger.yaml');
+const logger = require("./config/logger");
 
 // eslint-disable-next-line no-console
-promise.then(() => console.log("Connection successful!"));
+promise
+  .then(() => logger.info("connection successful"))
+  .catch(() => logger.error("connection not successful"));
 
 // view engine setup
 app.set('views', path.join(dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(logger('dev'));
+app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

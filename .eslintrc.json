@@ -36,7 +36,10 @@
               "mongodb",
               "localhost",
               "timestamps",
-              "joi"
+              "joi",
+              "winston",
+              "maxsize",
+              "logform"
           ],
           "skipIfMatch": [
               "http://[^s]*",

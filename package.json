@@ -27,10 +27,12 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "joi": "^17.5.0",
+    "logform": "^2.3.0",
     "mongodb": "^4.2.2",
     "mongoose": "^6.1.2",
     "morgan": "~1.9.1",
     "swagger-ui-express": "^4.2.0",
+    "winston": "^3.3.3",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
