@@ -11,7 +11,7 @@ const getTutorials = async (req, res) => {
     });
     res.status(200).send(tutorials);
   } catch (error) {
-    logger.error('Internal server error', error);
+    logger.error("Couldn't get all tutorials", error);
     res.status(500).send({ message: "Internal server error" });
   }
 };
@@ -30,7 +30,7 @@ const createTutorial = async (req, res) => {
     if (error instanceof CastError) {
       res.status(400).send({ message: "Invalid Tutorial details" });
     } else {
-      logger.error('Internal Server Error', error);
+      logger.error("Couldn't create a tutorial", error);
       res.status(500).send({ message: "Internal Server Error" });
     }
   }
@@ -57,7 +57,7 @@ const updateTutorial = async (req, res) => {
     if (error instanceof CastError) {
       res.status(404).send({ message: "Tutorial not found" });
     } else {
-      logger.error('Internal Server Error', error);
+      logger.error("Couldn't update a tutorial", error);
       res.status(500).send({ message: "Internal Server Error" });
     }
   }
@@ -78,7 +78,7 @@ const deleteTutorial = async (req, res) => {
     if (error instanceof CastError) {
       res.status(404).send({ message: "Tutorial not found" });
     } else {
-      logger.error('Internal Server Error', error);
+      logger.error("Couldn't delete a tutorial", error);
       res.status(500).send({ message: "Internal Server Error" });
     }
   }
@@ -97,7 +97,7 @@ const getTutorialById = async (req, res) => {
     if (error instanceof CastError) {
       res.status(404).send({ message: "Tutorial not found" });
     } else {
-      logger.error('Internal Server Error', error);
+      logger.error("Couldn't get a tutorial by id", error);
       res.status(500).send({ message: "Internal Server Error" });
     }
   }
