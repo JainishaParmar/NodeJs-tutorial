@@ -39,7 +39,10 @@
               "joi",
               "winston",
               "maxsize",
-              "logform"
+              "logform",
+              "mongodb",
+              "localhost",
+              "dotenv"
           ],
           "skipIfMatch": [
               "http://[^s]*",

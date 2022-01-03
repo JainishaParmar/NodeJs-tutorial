@@ -1,5 +1,6 @@
 const mangoose = require('mongoose');
+require('dotenv').config();
 
-const promise = mangoose.connect("mongodb://localhost:27017/tutorials", { useNewUrlParser: true });
+const promise = mangoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
 
 module.exports = { promise, mangoose };
