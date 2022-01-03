@@ -32,9 +32,10 @@ npm install
 ## Load env vars
 
 ```sh
-cp .env
+MONGO_URL = mongodb://localhost:27017/Database_name
+PORT = 3000
+LOG_LEVEL = info
 ```
-
 Input the desired environment variables in ``` .env ```
 
 ## Start the server
