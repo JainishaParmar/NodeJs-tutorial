@@ -151,11 +151,11 @@ paths:
       tags:
         - User
       parameters:
-      - name: email
-        in: path
-        required: true
-        description: Email of the user
-        type: string
+        - name: email
+          in: path
+          required: true
+          description: Email of the user
+          type: string
       responses:
         '200':
           description: otp send on email
@@ -171,7 +171,7 @@ paths:
           description: 'Internal Server Error'
           schema:
             $ref: '#/definitions/500Response'
-    
+
     post:
       summary: Reset password using otp
       tags:
@@ -185,19 +185,15 @@ paths:
       responses:
         '204':
           description: Password is updated
-        '404':
-          description: 'User not found'
-          schema:
-            $ref: '#/definitions/404Response'
         '400':
-          description: 'Invalid user email'
+          description: 'Invalid token'
           schema:
             $ref: '#/definitions/400Response'
         '500':
           description: 'Internal Server Error'
           schema:
             $ref: '#/definitions/500Response'
-    
+
   /User/forget-password:
     parameters:
       - name: email
@@ -279,7 +275,7 @@ definitions:
       updatedAt:
         type: string
         format: date-time
-  
+
   TutorialCreateBody:
     required:
       - title
