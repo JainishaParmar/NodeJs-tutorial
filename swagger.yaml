@@ -15,10 +15,11 @@ consumes:
 produces:
   - application/json
 securityDefinitions:
-  authentification:
+  JWT:
     type: apiKey
     in: header
-    name: access_token
+    name: Authorization
+
 paths:
   /tutorials:
     get:
@@ -60,8 +61,6 @@ paths:
           description: 'Internal server error'
           schema:
             $ref: '#/definitions/500Response'
-      security:
-        - authentification: []
 
   /tutorials/{id}:
     parameters:
@@ -111,8 +110,6 @@ paths:
           description: 'Internal Server Error'
           schema:
             $ref: '#/definitions/500Response'
-      security:
-        - authentification: []
 
     get:
       tags:
@@ -134,7 +131,7 @@ paths:
 
   /users:
     post:
-      summary: Register user into system
+      summary: Create User
       tags:
         - User
       parameters:
@@ -142,7 +139,7 @@ paths:
           in: body
           description: Enter user details
           schema:
-            $ref: '#/definitions/userCreated'
+            $ref: '#/definitions/UserCreateBody'
       produces:
         - application/json
       responses:
@@ -150,20 +147,24 @@ paths:
           description: Created
           schema:
             $ref: '#/definitions/User'
+        '400':
+          description: Invalid user details
+          schema:
+            $ref: '#/definitions/400Response'
         '500':
           description: 'Internal server error'
           schema:
             $ref: '#/definitions/500Response'
     patch:
-      summary: update user into system
+      summary: Update user
       tags:
         - User
       parameters:
         - name: updateUser
           in: body
-          description: Update user details.
+          description: Update user.
           schema:
-            $ref: '#/definitions/userUpdated'
+            $ref: '#/definitions/UserUpdateBody'
       produces:
         - application/json
       responses:
@@ -174,7 +175,7 @@ paths:
           schema:
             $ref: '#/definitions/404Response'
         '400':
-          description: 'Invalid token'
+          description: 'Invalid user details'
           schema:
             $ref: '#/definitions/400Response'
         '500':
@@ -182,7 +183,7 @@ paths:
           schema:
             $ref: '#/definitions/500Response'
       security:
-        - authentification: []
+        - JWT: []
 
   /users/oauth/reset-password:
     patch:
@@ -197,7 +198,7 @@ paths:
             $ref: '#/definitions/UserResetPassword'
       responses:
         '200':
-          description: Password updated
+          description: OK
         '400':
           description: 'Invalid password'
           schema:
@@ -221,7 +222,7 @@ paths:
 
       responses:
         '200':
-          description: Otp send on email
+          description: OK
         '404':
           description: 'User not found'
           schema:
@@ -274,7 +275,7 @@ paths:
           required: true
           type: 'string'
       responses:
-        '201':
+        '200':
           description: OK
           schema:
             $ref: '#/definitions/OauthToken'
@@ -287,7 +288,7 @@ paths:
           schema:
             $ref: '#/definitions/500Response'
       security:
-        - authentification: []
+        - JWT: []
 
 definitions:
   Tutorial:
@@ -329,7 +330,28 @@ definitions:
       published:
         type: boolean
 
-  userCreated:
+  User: 
+    required:
+      - _id 
+      - firstName
+      - lastName
+      - email
+      - password
+    properties:
+      _id:
+        type: string
+        format: uuid
+        uniqueItems: true
+      firstName:
+        type: string
+      lastName:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      
+  UserCreateBody:
     required:
       - firstName
       - lastName
@@ -346,7 +368,7 @@ definitions:
       password:
         type: string
 
-  userUpdated:
+  UserUpdateBody:
     required:
       - firstName
       - lastName
