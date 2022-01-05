@@ -170,7 +170,7 @@ paths:
       - name: id
         in: path
         required: true
-        description: Tutorial id
+        description: User id
         type: string
     patch:
       summary: Update user
@@ -217,16 +217,16 @@ paths:
           description: 'Enter email and password for login'
           required: true
           schema:
-            $ref: '#/definitions/OauthLogin'
+            $ref: '#/definitions/PostOauthTokenBody'
       responses:
         '200':
           description: OK
           schema:
             $ref: '#/definitions/OauthToken'
         '401':
-          description: 'User is unauthorized'
+          description: 'Unauthorized'
           schema:
-            $ref: '#/definitions/404Response'
+            $ref: '#/definitions/401Response'
         '500':
           description: 'Internal Server Error'
           schema:
@@ -368,7 +368,7 @@ definitions:
         type: string
         format: date-time
 
-  OauthLogin:
+  PostOauthTokenBody:
     required:
       - email
       - password
