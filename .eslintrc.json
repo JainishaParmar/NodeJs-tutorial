@@ -42,7 +42,10 @@
               "logform",
               "mongodb",
               "localhost",
-              "dotenv"
+              "dotenv",
+              "oauth",
+              "jsonwebtoken",
+              "mynameisjainishaparmarnodejsdeveloperbacked"
           ],
           "skipIfMatch": [
               "http://[^s]*",

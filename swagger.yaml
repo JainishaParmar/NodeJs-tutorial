@@ -219,7 +219,7 @@ paths:
           schema:
             $ref: '#/definitions/PostOauthTokenBody'
       responses:
-        '200':
+        '201':
           description: OK
           schema:
             $ref: '#/definitions/OauthToken'
@@ -231,8 +231,6 @@ paths:
           description: 'Internal Server Error'
           schema:
             $ref: '#/definitions/500Response'
-      security:
-        - JWT: []
 
   /oauth/reset-password:
     patch:
