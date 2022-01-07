@@ -44,8 +44,7 @@
               "localhost",
               "dotenv",
               "oauth",
-              "jsonwebtoken",
-              "mynameisjainishaparmarnodejsdeveloperbacked"
+              "jsonwebtoken"
           ],
           "skipIfMatch": [
               "http://[^s]*",
