@@ -1,4 +1,5 @@
 const { CastError } = require("mongoose");
+const bcrypt = require("bcryptjs");
 const User = require("../models/user.schema");
 const { postUserSchema, patchUserSchema } = require("../validation/user.validation");
 const logger = require("../config/logger");
@@ -10,6 +11,7 @@ const createUser = async (req, res) => {
     if (error) {
       return res.status(400).send({ message: error.message });
     }
+    value.password = await bcrypt.hash(value.password, 10);
     const user = new User(value);
     const userEmail = await User.findOne({ email: req.body.email });
     if (userEmail) {

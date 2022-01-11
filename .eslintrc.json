@@ -44,7 +44,11 @@
               "localhost",
               "dotenv",
               "oauth",
-              "jsonwebtoken"
+              "jsonwebtoken",
+              "nodemailer",
+              "otp",
+              "Gmail",
+              "bcryptjs"
           ],
           "skipIfMatch": [
               "http://[^s]*",

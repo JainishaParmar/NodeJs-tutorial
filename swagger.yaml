@@ -266,10 +266,10 @@ paths:
         - Authentication
       parameters:
         - name: Email
-          in: path
-          required: true
+          in: body
           description: Email of the user
-          type: string
+          schema:
+            $ref: '#/definitions/UserForgetPasswordOtp'
       responses:
         '201':
           description: OK
@@ -445,6 +445,13 @@ definitions:
       token:
         type: string
       newPassword:
+        type: string
+
+  UserForgetPasswordOtp:
+    required:
+      - email
+    properties:
+      email:
         type: string
 
   200Response:
