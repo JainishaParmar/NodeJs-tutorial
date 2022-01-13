@@ -1,11 +1,11 @@
 const joi = require("joi");
 
 const postOtpSchema = joi.object({
-  email: joi.string().email(),
+  email: joi.string().email().required(),
 });
 
 const patchOtpSchema = joi.object({
-  token: joi.string(),
+  token: joi.string().required(),
   newPassword: joi.string().min(8).max(20).required(),
 });
 

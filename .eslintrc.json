@@ -48,7 +48,8 @@
               "nodemailer",
               "otp",
               "Gmail",
-              "bcryptjs"
+              "bcryptjs",
+              "pasd"
           ],
           "skipIfMatch": [
               "http://[^s]*",

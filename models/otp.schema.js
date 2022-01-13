@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // Schema
-const postOtpSchema = new mongoose.Schema(
+const OtpSchema = new mongoose.Schema(
   {
     email: {
       type: String,
@@ -22,4 +22,10 @@ const postOtpSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-module.exports = mongoose.model("Otp", postOtpSchema);
+OtpSchema.methods.isExpired = function isExpired() {
+  const currentTime = new Date().getTime();
+  const timeDifference = (this.expiresIn - currentTime) < 0;
+  return timeDifference;
+};
+
+module.exports = mongoose.model("Otp", OtpSchema);

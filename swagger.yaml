@@ -205,6 +205,8 @@ paths:
           description: 'Internal server error'
           schema:
             $ref: '#/definitions/500Response'
+      security:
+        - JWT: []
 
   /oauth/token:
     post:
@@ -259,7 +261,7 @@ paths:
       security:
         - JWT: []
 
-  /oauth/forget-password:
+  /oauth/forgot-password:
     post:
       summary: Send otp to your email
       tags:

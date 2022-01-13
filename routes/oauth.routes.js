@@ -5,6 +5,6 @@ const {
 
 router.post("/token", userLogin);
 router.patch("/reset-password", restPassword);
-router.post("/forget-password", sendEmail);
-router.patch("/forget-password", forgetPassword);
+router.post("/forgot-password", sendEmail);
+router.patch("/forgot-password", forgetPassword);
 module.exports = router;
