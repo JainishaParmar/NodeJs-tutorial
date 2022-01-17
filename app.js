@@ -8,6 +8,8 @@ const morgan = require('morgan');
 const { promise } = require('./init/db');
 
 const TutorialRouter = require('./routes/tutorial.routes');
+const UserRouter = require('./routes/user.routes');
+const OauthRouter = require('./routes/oauth.routes');
 
 const dirname = path.resolve();
 
@@ -32,6 +34,8 @@ app.use(express.static(path.join(dirname, 'public')));
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
 app.use('/tutorials', TutorialRouter);
+app.use('/users', UserRouter);
+app.use('/oauth', OauthRouter);
 
 // catch 404 and forward to error handler
 app.use((_req, _res, next) => {

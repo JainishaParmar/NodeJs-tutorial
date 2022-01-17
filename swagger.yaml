@@ -35,6 +35,8 @@ paths:
           description: 'Internal server error'
           schema:
             $ref: '#/definitions/500Response'
+      security:
+        - JWT: []
 
     post:
       summary: Create tutorial
@@ -61,6 +63,8 @@ paths:
           description: 'Internal server error'
           schema:
             $ref: '#/definitions/500Response'
+      security:
+        - JWT: []
 
   /tutorials/{id}:
     parameters:
@@ -87,6 +91,8 @@ paths:
           description: 'Internal server error'
           schema:
             $ref: '#/definitions/500Response'
+      security:
+        - JWT: []
 
     patch:
       summary: Update tutorial with given ID
@@ -115,6 +121,8 @@ paths:
           description: 'Internal Server Error'
           schema:
             $ref: '#/definitions/500Response'
+      security:
+        - JWT: []
 
     get:
       tags:
@@ -133,6 +141,8 @@ paths:
           description: 'Internal Server Error'
           schema:
             $ref: '#/definitions/500Response'
+      security:
+        - JWT: []
 
   /users:
     post:
@@ -205,6 +215,8 @@ paths:
           description: 'Internal server error'
           schema:
             $ref: '#/definitions/500Response'
+      security:
+        - JWT: []
 
   /oauth/token:
     post:
@@ -219,7 +231,7 @@ paths:
           schema:
             $ref: '#/definitions/PostOauthTokenBody'
       responses:
-        '200':
+        '201':
           description: OK
           schema:
             $ref: '#/definitions/OauthToken'
@@ -231,8 +243,6 @@ paths:
           description: 'Internal Server Error'
           schema:
             $ref: '#/definitions/500Response'
-      security:
-        - JWT: []
 
   /oauth/reset-password:
     patch:
@@ -261,17 +271,17 @@ paths:
       security:
         - JWT: []
 
-  /oauth/forget-password:
+  /oauth/forgot-password:
     post:
       summary: Send otp to your email
       tags:
         - Authentication
       parameters:
         - name: Email
-          in: path
-          required: true
+          in: body
           description: Email of the user
-          type: string
+          schema:
+            $ref: '#/definitions/UserForgetPasswordOtp'
       responses:
         '201':
           description: OK
@@ -447,6 +457,13 @@ definitions:
       token:
         type: string
       newPassword:
+        type: string
+
+  UserForgetPasswordOtp:
+    required:
+      - email
+    properties:
+      email:
         type: string
 
   200Response:

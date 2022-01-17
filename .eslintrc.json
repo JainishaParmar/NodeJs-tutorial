@@ -42,7 +42,14 @@
               "logform",
               "mongodb",
               "localhost",
-              "dotenv"
+              "dotenv",
+              "oauth",
+              "jsonwebtoken",
+              "nodemailer",
+              "otp",
+              "Gmail",
+              "bcryptjs",
+              "pasd"
           ],
           "skipIfMatch": [
               "http://[^s]*",
