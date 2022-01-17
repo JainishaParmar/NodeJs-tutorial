@@ -35,6 +35,8 @@ paths:
           description: 'Internal server error'
           schema:
             $ref: '#/definitions/500Response'
+      security:
+        - JWT: []
 
     post:
       summary: Create tutorial
@@ -61,6 +63,8 @@ paths:
           description: 'Internal server error'
           schema:
             $ref: '#/definitions/500Response'
+      security:
+        - JWT: []
 
   /tutorials/{id}:
     parameters:
@@ -87,6 +91,8 @@ paths:
           description: 'Internal server error'
           schema:
             $ref: '#/definitions/500Response'
+      security:
+        - JWT: []
 
     patch:
       summary: Update tutorial with given ID
@@ -115,6 +121,8 @@ paths:
           description: 'Internal Server Error'
           schema:
             $ref: '#/definitions/500Response'
+      security:
+        - JWT: []
 
     get:
       tags:
@@ -133,6 +141,8 @@ paths:
           description: 'Internal Server Error'
           schema:
             $ref: '#/definitions/500Response'
+      security:
+        - JWT: []
 
   /users:
     post:

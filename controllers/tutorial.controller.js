@@ -1,5 +1,6 @@
 const { CastError } = require("mongoose");
 const Tutorial = require("../models/tutorial.schema");
+const User = require("../models/user.schema");
 const { postTutorialSchema } = require("../validation/tutorial.validation");
 
 const logger = require("../config/logger");
@@ -7,10 +8,14 @@ const logger = require("../config/logger");
 // get All Tutorials
 const getTutorials = async (req, res) => {
   try {
-    const tutorials = await Tutorial.find().sort({
-      createdAt: -1,
-    });
-    res.status(200).send(tutorials);
+    const user = await User.findOne(req.body);
+    const verifyUser = await user.verifyUserToken(req);
+    if (verifyUser) {
+      const tutorials = await Tutorial.find().sort({
+        createdAt: -1,
+      });
+      res.status(200).send(tutorials);
+    }
   } catch (error) {
     logger.error("Couldn't get all tutorials", error);
     res.status(500).send({ message: "Internal server error" });
@@ -24,9 +29,13 @@ const createTutorial = async (req, res) => {
     if (error) {
       return res.status(400).send({ message: error.message });
     }
-    const tutorial = new Tutorial(value);
-    await tutorial.save();
-    res.status(201).send(tutorial);
+    const tokenVerify = await User.findOne(req.body);
+    const user = await tokenVerify.verifyUserToken(req);
+    if (user) {
+      const tutorial = new Tutorial(value);
+      await tutorial.save();
+      res.status(201).send(tutorial);
+    }
   } catch (error) {
     if (error instanceof CastError) {
       res.status(400).send({ message: "Invalid Tutorial details" });
@@ -45,6 +54,8 @@ const updateTutorial = async (req, res) => {
     if (error) {
       return res.status(400).send({ message: error.message });
     }
+    const tokenVerify = await User.findOne(req.body);
+    await tokenVerify.verifyUserToken(req);
     const tutorial = await Tutorial.findByIdAndUpdate(
       { _id: req.params.id },
       value,
@@ -68,8 +79,9 @@ const updateTutorial = async (req, res) => {
 // Delete a Tutorial by ID
 const deleteTutorial = async (req, res) => {
   try {
+    const tokenVerify = await User.findOne(req.body);
+    await tokenVerify.verifyUserToken(req);
     const tutorial = await Tutorial.findByIdAndDelete(req.params.id);
-
     if (tutorial === null) {
       res.status(404).send({ message: "Tutorial not found" });
     } else {
@@ -88,7 +100,10 @@ const deleteTutorial = async (req, res) => {
 // Able to search by Id
 const getTutorialById = async (req, res) => {
   try {
+    const tokenVerify = await User.findOne(req.body);
+    await tokenVerify.verifyUserToken(req);
     const tutorial = await Tutorial.findById(req.params.id);
+
     if (tutorial === null) {
       res.status(404).send({ message: "Tutorial not found" });
     } else {
